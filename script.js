@@ -1,4 +1,5 @@
 let Xarray = [];
+let minesweepergrid = document.getElementById("minesweepergrid");
 
 let tile = {
     isbomb: false,
@@ -33,3 +34,12 @@ for (x = 0; x < 14; x++) {
         }
     }
 }
+
+let tempPokemon =
+  `
+  <li class="pokemon-list-item">
+    <h3 class="pokemon-list-item-name">${pokemons[i].name}</h3>
+    <p class="pokemon-list-item-level">Level: ${pokemons[i].level} </p>
+    <p class="pokemon-list-item-type">Type: ${pokemons[i].type}</p>
+  </li>
+  `
