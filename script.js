@@ -16,10 +16,13 @@ for (let x = 0; x < 14; x++) {
 
     for (let y = 0; y < 14; y++) {
         let temptile = { ...tile };
+        let tempVisualTile = document.createElement("li");
         temptile.xcord = x;
         temptile.ycord = y;
         console.log(temptile);
         Xarray[x].push(temptile);
+        tempVisualTile = temptile;
+        minesweepergrid.appendChild(tempVisualTile);
     }
 }
 
