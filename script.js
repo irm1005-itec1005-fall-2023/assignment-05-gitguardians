@@ -15,6 +15,8 @@ let tile = {
     isclicked: false,
 }
 
+nkjvdfshjnkvsdfankjvdasfjh
+
 for (let x = 0; x < 14; x++) {
 
     Xarray[x] = [];
@@ -89,4 +91,3 @@ function handleFlagMode(event) {
     }
 };
 
-aiuwefhiufafhuiawhfiahwuifhiuafwhuiawfkoji
