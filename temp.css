@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: red;
+    background-color: rgb(255, 255, 255);
 }
 
 #minesweepergrid { 
@@ -49,4 +49,25 @@ ul.minesweepergrid-class {
     width:100%;
     justify-content:center; 
     margin-top:20px;
+    border-radius: 3rem;
+    padding: 2rem;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(41, 192, 86);
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(192, 41, 41);
+    border: none;
+}
+
+.flagbutton-class:hover {
+   padding: 2.1rem;
+    font-size: 31px;
+    background-color: rgb(29, 141, 63);
+}
+
+.flagbutton-class:active {
+    padding: 2rem;
+    font-size: 30px;
+    background-color: rgb(41, 192, 86);
 }
