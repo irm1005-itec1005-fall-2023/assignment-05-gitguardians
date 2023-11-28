@@ -1,8 +1,8 @@
 let Xarray = [];
 let minesweepergrid = document.getElementById("minesweepergrid");
 let flagmode = document.getElementById("flagbutton");
-
-
+let reveal = document.getElementById("revealbutton");
+let generate = document.getElementById("generatebutton");
 
 
 
@@ -52,6 +52,39 @@ for (x = 0; x < 14; x++) {
     for (y = 0; y < 14; y++) {
         if (Math.random() < 0.2) {
             Xarray[x][y].isbomb = true;
+            let tempTopLeft = [x - 1, y - 1];
+            let tempTop = [x - 1, y];
+            let tempTopRight = [x - 1, y + 1];
+            let tempRight = [x, y + 1];
+            let tempBottomRight = [x + 1, y + 1];
+            let tempBottom = [x + 1, y];
+            let tempBottomLeft = [x + 1, y - 1];
+            let tempLeft = [x, y - 1];
+            
+            if (tempTopLeft[0] >= 0 && tempTopLeft[1] >= 0) {
+                Xarray[tempTopLeft[0]][tempTopLeft[1]].isnearby++;
+            }
+            if (tempTop[0] >= 0) {
+                Xarray[tempTop[0]][tempTop[1]].isnearby++;
+            }
+            if (tempTopRight[0] >= 0 && tempTopRight[1] < 14) {
+                Xarray[tempTopRight[0]][tempTopRight[1]].isnearby++;
+            }
+            if (tempRight[1] < 14) {
+                Xarray[tempRight[0]][tempRight[1]].isnearby++;
+            }
+            if (tempBottomRight[0] < 14 && tempBottomRight[1] < 14) {
+                Xarray[tempBottomRight[0]][tempBottomRight[1]].isnearby++;
+            }
+            if (tempBottom[0] < 14) {
+                Xarray[tempBottom[0]][tempBottom[1]].isnearby++;
+            }
+            if (tempBottomLeft[0] < 14 && tempBottomLeft[1] >= 0) {
+                Xarray[tempBottomLeft[0]][tempBottomLeft[1]].isnearby++;
+            }
+            if (tempLeft[1] >= 0) {
+                Xarray[tempLeft[0]][tempLeft[1]].isnearby++;
+            }
         }
     }
 }
@@ -106,3 +139,20 @@ function handleFlagMode(event) {
         flagmode.textContent = "Flag Mode: Off";
     }
 };
+
+reveal.addEventListener("click", handleReveal);
+
+function handleReveal(event) {
+    for (x = 0; x < 14; x++) {
+        for (y = 0; y < 14; y++) {
+            if (Xarray[x][y].isbomb == true) {
+                let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
+                tempButton.textContent = "X";
+            }
+            else {
+                let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
+                tempButton.textContent = Xarray[x][y].isnearby;
+            }
+        }
+    }
+}
