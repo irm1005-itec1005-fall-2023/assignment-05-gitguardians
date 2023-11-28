@@ -2,6 +2,8 @@ let Xarray = [];
 let minesweepergrid = document.getElementById("minesweepergrid");
 let flagmode = document.getElementById("flagbutton");
 
+let isFlagModeOn = false;
+
 let tile = {
     isbomb: false,
     isnearby: 0,
@@ -9,7 +11,8 @@ let tile = {
     isflagged: false,
     xcord: 0,
     ycord: 0,
-    flagged: false
+    flagged: false,
+    isclicked: false,
 }
 
 for (let x = 0; x < 14; x++) {
@@ -45,13 +48,27 @@ for (x = 0; x < 14; x++) {
         tempButton.dataset.xcord = x;
         tempButton.dataset.ycord = y;
         tempButton.addEventListener("click", function(event){
-            if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isbomb == true) {
-                tempButton.textContent = "X";
-                console.log("this is bomb");
-            }
-            else {
-                tempButton.textContent = "O";
-                console.log("NOT BOMB");
+            if (isFlagModeOn === false) {
+                if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isbomb == true) {
+                    tempButton.textContent = "X";
+                    console.log("this is bomb"); 
+                    Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;  
+                }
+                else {
+                    tempButton.textContent = Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isnearby;
+                    console.log("NOT BOMB");
+                    Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;
+                }
+            } else {
+                if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked == false) {
+                    if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged == false) {
+                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = true;
+                        tempButton.textContent = "F";
+                    } else {
+                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = false;
+                        tempButton.textContent = " ";
+                    }
+                }
             }
         });
         tempVisualTile.appendChild(tempButton);
@@ -62,4 +79,12 @@ for (x = 0; x < 14; x++) {
 flagmode.addEventListener("click", handleFlagMode);
 
 function handleFlagMode(event) {
+    if (isFlagModeOn === false) {
+        isFlagModeOn = true;
+        flagmode.textContent = "Flag Mode: On";
+    }
+    else {
+        isFlagModeOn = false;
+        flagmode.textContent = "Flag Mode: Off";
+    }
 };
