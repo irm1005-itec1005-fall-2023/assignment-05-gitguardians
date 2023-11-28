@@ -1,5 +1,6 @@
 let Xarray = [];
 let minesweepergrid = document.getElementById("minesweepergrid");
+let flagmode = document.getElementById("flagbutton");
 
 let tile = {
     isbomb: false,
@@ -52,21 +53,13 @@ for (x = 0; x < 14; x++) {
                 tempButton.textContent = "O";
                 console.log("NOT BOMB");
             }
-        tempButton.addEventListener("contextmenu", rightClick(event));
         });
         tempVisualTile.appendChild(tempButton);
         minesweepergrid.appendChild(tempVisualTile);
     }
 }
 
-function rightClick(event) {
-    event.preventDefault();
-    if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged == false) {
-        event.target.textContent = "F";
-        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = true;
-    }
-    else {
-        event.target.textContent = " ";
-        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = false;
-    }
-}
+flagmode.addEventListener("click", handleFlagMode);
+
+function handleFlagMode(event) {
+};
