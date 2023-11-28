@@ -2,6 +2,24 @@ let Xarray = [];
 let minesweepergrid = document.getElementById("minesweepergrid");
 let flagmode = document.getElementById("flagbutton");
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let isFlagModeOn = false;
 
 let tile = {
@@ -14,8 +32,6 @@ let tile = {
     flagged: false,
     isclicked: false,
 }
-
-nkjvdfshjnkvsdfankjvdasfjh
 
 for (let x = 0; x < 14; x++) {
 
