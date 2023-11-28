@@ -6,6 +6,15 @@
     height: 100vh;
 }
 
+.minesweep-cont-class {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: red;
+}
+
 #minesweepergrid { 
     display:grid;
     grid-template-columns: repeat(14, 50px);
@@ -33,4 +42,11 @@ ul.minesweepergrid-class {
 .minesweepergrid-class button:active {
     background-color: red;
     color: #f1faee;
+}
+
+.flagbutton-class {
+    display:flex;
+    width:100%;
+    justify-content:center; 
+    margin-top:20px;
 }

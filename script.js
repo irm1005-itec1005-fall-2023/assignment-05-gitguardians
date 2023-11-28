@@ -8,6 +8,7 @@ let tile = {
     isflagged: false,
     xcord: 0,
     ycord: 0,
+    flagged: false
 }
 
 for (let x = 0; x < 14; x++) {
@@ -51,8 +52,21 @@ for (x = 0; x < 14; x++) {
                 tempButton.textContent = "O";
                 console.log("NOT BOMB");
             }
+        tempButton.addEventListener("contextmenu", rightClick(event));
         });
         tempVisualTile.appendChild(tempButton);
         minesweepergrid.appendChild(tempVisualTile);
+    }
+}
+
+function rightClick(event) {
+    event.preventDefault();
+    if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged == false) {
+        event.target.textContent = "F";
+        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = true;
+    }
+    else {
+        event.target.textContent = " ";
+        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = false;
     }
 }
