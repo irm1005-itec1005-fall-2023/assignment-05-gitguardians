@@ -33,8 +33,6 @@ for (x = 0; x < 14; x++) {
     }
 }
 
-console.log(Xarray[0][2]);
-
 // This function creates an li and a button for each tile, also giving them the id of "tile". It then adds them to the list in the html file. The CSS displays them in a grid. 
 for (x = 0; x < 14; x++) {
     for (y = 0; y < 14; y++) {
@@ -42,9 +40,19 @@ for (x = 0; x < 14; x++) {
         let tempButton = document.createElement("button");
         tempButton.id = "tile";
         tempButton.textContent = " ";
+        tempButton.dataset.xcord = x;
+        tempButton.dataset.ycord = y;
+        tempButton.addEventListener("click", function(event){
+            if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isbomb == true) {
+                tempButton.textContent = "X";
+                console.log("this is bomb");
+            }
+            else {
+                tempButton.textContent = "O";
+                console.log("NOT BOMB");
+            }
+        });
         tempVisualTile.appendChild(tempButton);
         minesweepergrid.appendChild(tempVisualTile);
     }
 }
-
-

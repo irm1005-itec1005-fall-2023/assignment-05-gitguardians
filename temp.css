@@ -1,9 +1,17 @@
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
 #minesweepergrid { 
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    border: 1px solid black;
+    grid-template-columns: repeat(14, 50px);
     list-style:none;
     text-align:center;
+    justify-content:center;
 }
 
 .minesweepergrid-class button {
@@ -17,3 +25,12 @@
     cursor: pointer;
 }
 
+ul.minesweepergrid-class {
+    margin:0;
+    padding:0;
+}
+
+.minesweepergrid-class button:active {
+    background-color: red;
+    color: #f1faee;
+}
