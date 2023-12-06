@@ -1,3 +1,4 @@
+
 #app {
     display: flex;
     flex-direction: column;
@@ -45,19 +46,11 @@ ul.minesweepergrid-class {
 }
 
 .flagbutton-class {
-    display:flex;
-    width:100%;
-    justify-content:center; 
-    margin-top:20px;
-    border-radius: 3rem;
-    padding: 2rem;
-    font-size: 30px;
-    font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: rgb(41, 192, 86);
-    color: rgb(255, 255, 255);
-    text-shadow: rgb(192, 41, 41);
-    border: none;
+   content: '';
+   background-image: url(images/flag\(1\).png);
+   background-size: cover;
+   background-position: center;
+   padding: 2rem;
 }
 
 .flagbutton-class:hover {

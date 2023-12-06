@@ -213,11 +213,9 @@ function handleFlagMode(event) {
     event.preventDefault();
     if (isFlagModeOn === false) {
         isFlagModeOn = true;
-        flagmode.textContent = "Flag Mode: On";
     }
     else {
         isFlagModeOn = false;
-        flagmode.textContent = "Flag Mode: Off";
     }
 };
 
