@@ -165,6 +165,7 @@ function revealif0(x, y) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempTopLeft[0]}"][data-ycord="${tempTopLeft[1]}"]`);
                 tempButton.textContent = Xarray[tempTopLeft[0]][tempTopLeft[1]].isnearby;
                 Xarray[tempTopLeft[0]][tempTopLeft[1]].isclicked = true;
+                tempButton.id = "clicked";
                 revealif0(tempTopLeft[0], tempTopLeft[1]);
             }
         }
@@ -173,6 +174,7 @@ function revealif0(x, y) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempTop[0]}"][data-ycord="${tempTop[1]}"]`);
                 tempButton.textContent = Xarray[tempTop[0]][tempTop[1]].isnearby;
                 Xarray[tempTop[0]][tempTop[1]].isclicked = true;
+                tempButton.id = "clicked";
                 revealif0(tempTop[0], tempTop[1]);
             }
         }
@@ -181,6 +183,7 @@ function revealif0(x, y) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempTopRight[0]}"][data-ycord="${tempTopRight[1]}"]`);
                 tempButton.textContent = Xarray[tempTopRight[0]][tempTopRight[1]].isnearby;
                 Xarray[tempTopRight[0]][tempTopRight[1]].isclicked = true;
+                tempButton.id = "clicked";
                 revealif0(tempTopRight[0], tempTopRight[1]);
             }
         }
@@ -189,6 +192,7 @@ function revealif0(x, y) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempRight[0]}"][data-ycord="${tempRight[1]}"]`);
                 tempButton.textContent = Xarray[tempRight[0]][tempRight[1]].isnearby;
                 Xarray[tempRight[0]][tempRight[1]].isclicked = true;
+                tempButton.id = "clicked";
                 revealif0(tempRight[0], tempRight[1]);
             }
         }
@@ -197,6 +201,7 @@ function revealif0(x, y) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempBottomRight[0]}"][data-ycord="${tempBottomRight[1]}"]`);
                 tempButton.textContent = Xarray[tempBottomRight[0]][tempBottomRight[1]].isnearby;
                 Xarray[tempBottomRight[0]][tempBottomRight[1]].isclicked = true;
+                tempButton.id = "clicked";
                 revealif0(tempBottomRight[0], tempBottomRight[1]);
             }
         }
@@ -205,6 +210,7 @@ function revealif0(x, y) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempBottom[0]}"][data-ycord="${tempBottom[1]}"]`);
                 tempButton.textContent = Xarray[tempBottom[0]][tempBottom[1]].isnearby;
                 Xarray[tempBottom[0]][tempBottom[1]].isclicked = true;
+                tempButton.id = "clicked";
                 revealif0(tempBottom[0], tempBottom[1]);
             }
         }
@@ -213,6 +219,7 @@ function revealif0(x, y) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempBottomLeft[0]}"][data-ycord="${tempBottomLeft[1]}"]`);
                 tempButton.textContent = Xarray[tempBottomLeft[0]][tempBottomLeft[1]].isnearby;
                 Xarray[tempBottomLeft[0]][tempBottomLeft[1]].isclicked = true;
+                tempButton.id = "clicked";
                 revealif0(tempBottomLeft[0], tempBottomLeft[1]);
             }
         }
@@ -221,6 +228,7 @@ function revealif0(x, y) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempLeft[0]}"][data-ycord="${tempLeft[1]}"]`);
                 tempButton.textContent = Xarray[tempLeft[0]][tempLeft[1]].isnearby;
                 Xarray[tempLeft[0]][tempLeft[1]].isclicked = true;
+                tempButton.id = "clicked";
                 revealif0(tempLeft[0], tempLeft[1]);
             }
         }
