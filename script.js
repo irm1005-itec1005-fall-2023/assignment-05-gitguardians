@@ -110,8 +110,8 @@ function createVisualBoard() {
                     if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isbomb == true) {
                         tempButton.textContent = "X";
                         tempButton.id = "bomb";
-                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;  
-                        tempButton.style.color = "red";
+                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true; 
+
                         endResult();
                     }
                     else {
@@ -119,7 +119,7 @@ function createVisualBoard() {
                         Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;
                         let zeroCheckXCoord = event.target.dataset.xcord;
                         let zeroCheckYCoord = event.target.dataset.ycord;
-                        tempButton.style.color = "black";
+                       
                         tempButton.id = "clicked";
                         revealif0(zeroCheckXCoord, zeroCheckYCoord);
                     }
@@ -128,7 +128,7 @@ function createVisualBoard() {
                         if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged == false) {
                             Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = true;
                             tempButton.textContent = "F";
-                            tempButton.style.color = "yellow";
+                            
                             tempButton.id = "flagged";
                         } else {
                             Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = false;
@@ -262,10 +262,12 @@ function endResult() {
             if (Xarray[x][y].isbomb == true) {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
                 tempButton.textContent = "X";
+                tempButton.id = "bomb";
             }
             else {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
                 tempButton.textContent = Xarray[x][y].isnearby;
+                tempButton.id = "clicked";
             }
         }
     }
