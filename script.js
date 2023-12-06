@@ -18,8 +18,8 @@ let generate = document.getElementById("generatebutton");
 
 
 
-
-
+let totalFlagged = 0;
+let totalBombs = 0;
 let isFlagModeOn = false;
 
 let tile = {
@@ -91,6 +91,7 @@ for (x = 0; x < 14; x++) {
             if (tempLeft[1] >= 0) {
                 Xarray[tempLeft[0]][tempLeft[1]].isnearby++;
             }
+            totalBombs++;
         }
     }
 }
@@ -128,12 +129,13 @@ function createVisualBoard() {
                         if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged == false) {
                             Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = true;
                             tempButton.textContent = "F";
-                            
                             tempButton.id = "flagged";
+                            totalFlagged++;
                         } else {
                             Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = false;
                             tempButton.textContent = "";
                             tempButton.id = "tile";
+                            totalFlagged--;
                         }
                     }
                 }
