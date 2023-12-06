@@ -282,3 +282,20 @@ function endResult() {
         }
     }
 }
+
+function handleWin() {
+    if (totalFlagged === totalBombs) {
+        let totalCorrectFlags = 0;
+        for (x = 0; x < 14; x++) {
+            for (y = 0; y < 14; y++) {
+                if (Xarray[x][y].isbomb == true && Xarray[x][y].flagged == true) {
+                    totalCorrectFlags++;
+                }
+            }
+        }
+        if (totalCorrectFlags === totalBombs) {
+            console.log("You Win!");
+        }
+    }
+}
+document.addEventListener("click", handleWin);
