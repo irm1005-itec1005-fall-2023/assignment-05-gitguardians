@@ -33,24 +33,30 @@ let tile = {
     isclicked: false,
 }
 
-for (let x = 0; x < 14; x++) {
+function generateBoard() {
 
-    Xarray[x] = [];
+    Xarray = [];
 
-    for (let y = 0; y < 14; y++) {
-        let temptile = { ...tile };
-        temptile.xcord = x;
-        temptile.ycord = y;
-        console.log(temptile);
-        Xarray[x].push(temptile);
-        tempVisualTile = temptile;
+    for (let x = 0; x < 14; x++) {
+
+        Xarray[x] = [];
+
+        for (let y = 0; y < 14; y++) {
+            let temptile = { ...tile };
+            temptile.xcord = x;
+            temptile.ycord = y;
+            console.log(temptile);
+            Xarray[x].push(temptile);
+        }
     }
 }
+
+generateBoard();
 
 // Adds bombs to each array element with a 20% chance of being a bomb 
 for (x = 0; x < 14; x++) {
     for (y = 0; y < 14; y++) {
-        if (Math.random() < 0.2) {
+        if (Math.random() < 0.15) {
             Xarray[x][y].isbomb = true;
             let tempTopLeft = [x - 1, y - 1];
             let tempTop = [x - 1, y];
@@ -90,46 +96,55 @@ for (x = 0; x < 14; x++) {
 }
 
 // This function creates an li and a button for each tile, also giving them the id of "tile". It then adds them to the list in the html file. The CSS displays them in a grid. 
-for (x = 0; x < 14; x++) {
-    for (y = 0; y < 14; y++) {
-        let tempVisualTile = document.createElement("li");
-        let tempButton = document.createElement("button");
-        tempButton.id = "tile";
-        tempButton.textContent = "";
-        tempButton.dataset.xcord = x;
-        tempButton.dataset.ycord = y;
-        tempButton.addEventListener("click", function(event){
-            if (isFlagModeOn === false) {
-                if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isbomb == true) {
-                    tempButton.textContent = "X";
-                    Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;  
-                    tempButton.style.color = "red";
-                }
-                else {
-                    tempButton.textContent = Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isnearby;
-                    Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;
-                    let zeroCheckXCoord = event.target.dataset.xcord;
-                    let zeroCheckYCoord = event.target.dataset.ycord;
-                    tempButton.style.color = "black";
-                    revealif0(zeroCheckXCoord, zeroCheckYCoord);
-                }
-            } else {
-                if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked == false) {
-                    if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged == false) {
-                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = true;
-                        tempButton.textContent = "F";
-                        tempButton.style.color = "yellow";
-                    } else {
-                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = false;
-                        tempButton.textContent = "";
+function createVisualBoard() {
+    for (x = 0; x < 14; x++) {
+        for (y = 0; y < 14; y++) {
+            let tempVisualTile = document.createElement("li");
+            let tempButton = document.createElement("button");
+            tempButton.id = "tile";
+            tempButton.textContent = "";
+            tempButton.dataset.xcord = x;
+            tempButton.dataset.ycord = y;
+            tempButton.addEventListener("click", function(event){
+                if (isFlagModeOn === false) {
+                    if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isbomb == true) {
+                        tempButton.textContent = "X";
+                        tempButton.id = "bomb";
+                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;  
+                        tempButton.style.color = "red";
+                        endResult();
+                    }
+                    else {
+                        tempButton.textContent = Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isnearby;
+                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;
+                        let zeroCheckXCoord = event.target.dataset.xcord;
+                        let zeroCheckYCoord = event.target.dataset.ycord;
+                        tempButton.style.color = "black";
+                        tempButton.id = "clicked";
+                        revealif0(zeroCheckXCoord, zeroCheckYCoord);
+                    }
+                } else {
+                    if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked == false) {
+                        if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged == false) {
+                            Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = true;
+                            tempButton.textContent = "F";
+                            tempButton.style.color = "yellow";
+                            tempButton.id = "flagged";
+                        } else {
+                            Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = false;
+                            tempButton.textContent = "";
+                            tempButton.id = "tile";
+                        }
                     }
                 }
-            }
-        });
-        tempVisualTile.appendChild(tempButton);
-        minesweepergrid.appendChild(tempVisualTile);
+            });
+            tempVisualTile.appendChild(tempButton);
+            minesweepergrid.appendChild(tempVisualTile);
+        }
     }
 }
+
+createVisualBoard();
 
 document.addEventListener("keydown", handleFlagMode);
 
@@ -146,7 +161,7 @@ function revealif0(x, y) {
         let tempBottomLeft = [parseInt(x) + 1, parseInt(y) - 1];
         let tempLeft = [parseInt(x), parseInt(y) - 1];
         if (tempTopLeft[0] >= 0 && tempTopLeft[1] >= 0) {
-            if (Xarray[tempTopLeft[0]][tempTopLeft[1]].isclicked == false) {
+            if (Xarray[tempTopLeft[0]][tempTopLeft[1]].isclicked === false) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempTopLeft[0]}"][data-ycord="${tempTopLeft[1]}"]`);
                 tempButton.textContent = Xarray[tempTopLeft[0]][tempTopLeft[1]].isnearby;
                 Xarray[tempTopLeft[0]][tempTopLeft[1]].isclicked = true;
@@ -154,7 +169,7 @@ function revealif0(x, y) {
             }
         }
         if (tempTop[0] >= 0) {
-            if (Xarray[tempTop[0]][tempTop[1]].isclicked == false) {
+            if (Xarray[tempTop[0]][tempTop[1]].isclicked === false) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempTop[0]}"][data-ycord="${tempTop[1]}"]`);
                 tempButton.textContent = Xarray[tempTop[0]][tempTop[1]].isnearby;
                 Xarray[tempTop[0]][tempTop[1]].isclicked = true;
@@ -164,6 +179,9 @@ function revealif0(x, y) {
         if (tempTopRight[0] >= 0 && tempTopRight[1] < 14) {
             if (Xarray[tempTopRight[0]][tempTopRight[1]].isclicked == false) {
                 let tempButton = document.querySelector(`button[data-xcord="${tempTopRight[0]}"][data-ycord="${tempTopRight[1]}"]`);
+                tempButton.textContent = Xarray[tempTopRight[0]][tempTopRight[1]].isnearby;
+                Xarray[tempTopRight[0]][tempTopRight[1]].isclicked = true;
+                revealif0(tempTopRight[0], tempTopRight[1]);
             }
         }
         if (tempRight[1] < 14) {
@@ -238,3 +256,17 @@ function handleReveal(event) {
     }
 }
 
+function endResult() {
+    for (x = 0; x < 14; x++) {
+        for (y = 0; y < 14; y++) {
+            if (Xarray[x][y].isbomb == true) {
+                let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
+                tempButton.textContent = "X";
+            }
+            else {
+                let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
+                tempButton.textContent = Xarray[x][y].isnearby;
+            }
+        }
+    }
+}

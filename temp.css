@@ -44,6 +44,10 @@ ul.minesweepergrid-class {
     color: #f1faee;
 }
 
+.minesweepergrid-class button.bomb {
+    background-color: green;
+}
+
 .flagbutton-class {
     display:flex;
     width:100%;
