@@ -137,7 +137,7 @@ function createVisualBoard() {
                             tempButton.id = "tile";
                             totalFlagged--;
                         }
-                    }}
+                    }
                 }
             });
             tempVisualTile.appendChild(tempButton);
