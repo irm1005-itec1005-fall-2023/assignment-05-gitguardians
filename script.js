@@ -34,6 +34,8 @@ let tile = {
 }
 
 function generateBoard() {
+    totalFlagged = 0;
+    totalBombs = 0;
     minesweepergrid.innerHTML = "";
     console.log("Generating Board");
     Xarray = [];
@@ -55,7 +57,7 @@ function generateBoard() {
 
 generateBoard();
 
-// Adds bombs to each array element with a 20% chance of being a bomb 
+// Adds bombs to each array element with a 15% chance of being a bomb 
 
 function generateBombs() {
     for (x = 0; x < 14; x++) {
