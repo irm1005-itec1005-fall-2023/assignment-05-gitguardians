@@ -326,7 +326,6 @@ generate.addEventListener("click", generateBoard);
 function handleTimer() {
     if (timerOn === false) {
         timerOn = true;
-        let time = 0;
         timerInterval = setInterval(function() {
             time++;
             timer.textContent = time;
