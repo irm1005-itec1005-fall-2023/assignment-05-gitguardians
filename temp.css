@@ -8,7 +8,7 @@ body {
 
 #app {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -20,7 +20,6 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: rgb(255, 255, 255);
 }
 
 #minesweepergrid { 
@@ -29,7 +28,6 @@ body {
     list-style:none;
     text-align:center;
     justify-content:center;
-gap:0;
 }
 
 ul.minesweepergrid-class {
@@ -74,11 +72,12 @@ ul.minesweepergrid-class {
 
 .flagbutton-class {
    content: '';
-font-size:0px;
+   font-size:0px;
    background-image: url(images/flag\(1\).png);
    background-size: cover;
    background-position: center;
    padding: 2rem;
+   margin:1rem;
 }
 
 .flagmodeon {
