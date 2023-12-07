@@ -22,7 +22,7 @@
     list-style:none;
     text-align:center;
     justify-content:center;
-gap:0;
+    gap:0;
 }
 
 ul.minesweepergrid-class {
@@ -91,6 +91,7 @@ font-size:0px;
     padding:1rem;
     border: .5rem solid rgb(156, 156, 156);
     border-radius:1rem;
+    margin-top:-34rem;
 }
 
 .endsection-buttons {

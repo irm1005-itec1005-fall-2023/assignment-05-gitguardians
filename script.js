@@ -5,18 +5,19 @@ let generate = document.getElementById("restartbutton");
 let test = document.getElementById("testing");
 let endbox = document.getElementById("endsection");
 let timerInterval = null;
+let endscreentitle = document.getElementById("endscreentitle");
+let timetext = document.getElementById("timetext");
+
+
+
+
+
+
+
+
+
+
 let time = 0;
-
-
-
-
-
-
-
-
-
-
-
 let timerOn = false;
 let totalFlagged = 0;
 let totalBombs = 0;
@@ -34,6 +35,7 @@ let tile = {
 }
 
 function generateBoard() {
+    pauseTimer();
     time = 0;
     endbox.classList.remove("gameover");
     totalFlagged = 0;
@@ -285,10 +287,12 @@ function endResult() {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
                 tempButton.textContent = Xarray[x][y].isnearby;
                 tempButton.id = "clicked";
-                pauseTimer();
             }
         }
     }
+    pauseTimer();
+    endscreentitle.textContent = "Game Over!";
+    timetext.textContent = "Time: " + time + " seconds ";
 }
 
 function handleWin() {
@@ -302,8 +306,9 @@ function handleWin() {
             }
         }
         if (totalCorrectFlags === totalBombs) {
-            alert("You Win!");
+            endscreentitle.textContent = "You Win!";
             pauseTimer();
+            timetext.textContent = "Time: " + time + " seconds ";
         }
     }
 }
@@ -314,7 +319,7 @@ generate.addEventListener("click", generateBoard);
 function handleTimer() {
     if (timerOn === false) {
         timerOn = true;
-        
+        let time = 0;
         timerInterval = setInterval(function() {
             time++;
             timer.textContent = time;
