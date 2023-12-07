@@ -38,7 +38,8 @@ let tile = {
 function generateBoard() {
     gameoverstate = false;
     pauseTimer();
-    time = 0;
+    timer.textContent = "0";
+    timer.style.display = "flex";
     endbox.classList.remove("gameover");
     totalFlagged = 0;
     totalBombs = 0;
@@ -129,6 +130,7 @@ function createVisualBoard() {
                             tempButton.id = "bomb";
                             Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true; 
                             endbox.classList.add("gameover");
+                            
                             endResult();
                         }
                         else {
@@ -329,6 +331,7 @@ function handleTimer() {
         timerInterval = setInterval(function() {
             time++;
             timer.textContent = time;
+            
         }, 1000);
     }
 }
@@ -337,6 +340,7 @@ function pauseTimer() {
     if (timerOn === true) {
         clearInterval(timerInterval);
         timerOn = false;
+        timer.style.display = "none";
     }
 }
 

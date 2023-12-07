@@ -91,7 +91,8 @@ font-size:0px;
     padding:1rem;
     border: .5rem solid rgb(156, 156, 156);
     border-radius:1rem;
-    margin-top:-34rem;
+    position: fixed;
+    
 }
 
 .endsection-buttons {
@@ -107,4 +108,19 @@ font-size:0px;
 
 .gameover {
     display:flex;
+    
+}
+
+.timer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    border: 2px solid black;
+    color: red;
+  margin: auto;
+    font-size: 20px;
+    padding: 5px;
+   min-width: 100px;
+    font: bold 1em Arial;
 }
