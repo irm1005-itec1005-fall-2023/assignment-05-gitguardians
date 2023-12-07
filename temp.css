@@ -22,11 +22,19 @@
     list-style:none;
     text-align:center;
     justify-content:center;
+    gap:0;
+}
+
+ul.minesweepergrid-class {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+
 }
 
 .minesweepergrid-class button {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border: 1px solid black;
     background-color: #a8dadc;
     color: #1d3557;
@@ -55,25 +63,41 @@ ul.minesweepergrid-class {
     color:white;
 }
 
-
-
 .flagbutton-class {
    content: '';
+   font-size:0px;
    background-image: url(images/flag\(1\).png);
    background-size: cover;
    background-position: center;
    padding: 2rem;
 }
 
-.flagbutton-class:hover {
-   padding: 2.1rem;
-    font-size: 31px;
-    background-color: rgb(29, 141, 63);
+.flagmodeon {
+    background-color: green;
 }
 
-.flagbutton-class:active {
-    padding: 2rem;
-    font-size: 30px;
-    background-color: rgb(41, 192, 86);
+#clicked {
+    background:rgb(248, 217, 137);
 }
 
+.endsection-class {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(189, 188, 188);
+    padding:1rem;
+    border: .5rem solid rgb(156, 156, 156);
+    border-radius:1rem;
+}
+
+.endsection-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.endsection-buttons button {
+    margin:1rem;
+}
