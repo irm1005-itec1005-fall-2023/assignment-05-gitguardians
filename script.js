@@ -3,9 +3,6 @@ let minesweepergrid = document.getElementById("minesweepergrid");
 let flagmode = document.getElementById("flagbutton");
 let reveal = document.getElementById("revealbutton");
 let generate = document.getElementById("generatebutton");
-let timer = document.getElementById("timer");
-let test = document.getElementById("testing");
-let timerInterval = null;
 
 
 
@@ -17,7 +14,10 @@ let timerInterval = null;
 
 
 
-let timerOn = false;
+
+
+
+
 let totalFlagged = 0;
 let totalBombs = 0;
 let isFlagModeOn = false;
@@ -121,7 +121,7 @@ function createVisualBoard() {
                         tempButton.textContent = "X";
                         tempButton.id = "bomb";
                         Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true; 
-
+                        endbox.classList.add("gameover");
                         endResult();
                     }
                     else {
