@@ -1,9 +1,8 @@
 let Xarray = [];
 let minesweepergrid = document.getElementById("minesweepergrid");
 let flagmode = document.getElementById("flagbutton");
-let reveal = document.getElementById("revealbutton");
-let generate = document.getElementById("generatebutton");
-
+let generate = document.getElementById("restartbutton");
+let endbox = document.getElementById("endsection");
 
 
 
@@ -120,7 +119,7 @@ function createVisualBoard() {
                         tempButton.textContent = "X";
                         tempButton.id = "bomb";
                         Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true; 
-
+                        endbox.classList.add("gameover");
                         endResult();
                     }
                     else {
