@@ -22,7 +22,7 @@
     list-style:none;
     text-align:center;
     justify-content:center;
-    gap:0;
+gap:0;
 }
 
 ul.minesweepergrid-class {
@@ -36,7 +36,7 @@ ul.minesweepergrid-class {
     width: 40px;
     height: 40px;
     border: 1px solid black;
-    background-color: #a8dadc;
+    background-color: #6e542b;
     color: #1d3557;
     font-size: 20px;
     font-weight: bold;
@@ -59,7 +59,7 @@ ul.minesweepergrid-class {
 }
 
 .minesweepergrid-class button#flagged {
-    background-color: rgb(231, 231, 96);
+    background-color: rgb(195, 195, 66);
     color:white;
 }
 
@@ -91,7 +91,6 @@ font-size:0px;
     padding:1rem;
     border: .5rem solid rgb(156, 156, 156);
     border-radius:1rem;
-    margin-top:-34rem;
 }
 
 .endsection-buttons {
