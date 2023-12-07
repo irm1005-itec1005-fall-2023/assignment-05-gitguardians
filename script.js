@@ -157,7 +157,7 @@ function createVisualBoard() {
 document.addEventListener("keydown", handleFlagMode);
 
 flagmode.addEventListener("click", handleFlagMode);
-test
+
 function revealif0(x, y) {
     if (Xarray[x][y].isnearby === 0) {
         let tempTopLeft = [parseInt(x) - 1, parseInt(y) - 1];
