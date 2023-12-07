@@ -5,7 +5,7 @@ let generate = document.getElementById("restartbutton");
 let test = document.getElementById("testing");
 let endbox = document.getElementById("endsection");
 let timerInterval = null;
-
+let time = 0;
 
 
 
@@ -34,6 +34,7 @@ let tile = {
 }
 
 function generateBoard() {
+    time = 0;
     endbox.classList.remove("gameover");
     totalFlagged = 0;
     totalBombs = 0;
@@ -313,7 +314,7 @@ generate.addEventListener("click", generateBoard);
 function handleTimer() {
     if (timerOn === false) {
         timerOn = true;
-        let time = 0;
+        
         timerInterval = setInterval(function() {
             time++;
             timer.textContent = time;
