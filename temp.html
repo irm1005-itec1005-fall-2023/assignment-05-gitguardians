@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <!-- Set the page title -->
-    <title>Group Project</title>
+    <title>Minesweeper</title>
 
     <!-- Set the charset we're using to UTF-8 -->
     <meta charset="UTF-8" />
@@ -20,28 +20,37 @@
     <link rel="stylesheet" href="./temp.css" />
 
     <!-- Set the Favicon  -->
-    <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
+    <link rel="icon" href="images/bombfavicon.png" type="image/svg+xml" />
   </head>
   <body>
     <main>
-      <div id="app">
+
+  
+  <div id="timer" class="timer">
+        <p>00:00</p>
+      </div>
+      <div id="app">   
+      
         <div id="minesweeper-cont" class ="minesweep-cont-class">
           <ul id="minesweepergrid" class="minesweepergrid-class"></ul>
           <button id="flagbutton" class="flagbutton-class">Flag mode</button>
         </div>
 
         <section id="endsection" class="endsectionclass">
-          <h2>End screen</h2>
+          <background-image src="images\flag(1).png"></background-image>
+          <h2 id="endscreentitle">End screen</h2>
 
-          <p id="endtext" class="endtext-class"></p>
+          <p id="timetext" class="timetext-class"></p>
+
           <div class="endsection-buttons">
             <button id="restartbutton">Restart?</button>
-            <button>Title screen</button>
+            <a href = "TItle.html"><button>Title screen</button></a>
           </div>
         </section>
       </div>
-
-
+      <section class="molegif1">
+<img src="images/mole_1.gif">
+</section>
     </main>
 
     <!-- This is where we add our awesome JavaScript code -->

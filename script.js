@@ -2,7 +2,11 @@ let Xarray = [];
 let minesweepergrid = document.getElementById("minesweepergrid");
 let flagmode = document.getElementById("flagbutton");
 let generate = document.getElementById("restartbutton");
+let test = document.getElementById("testing");
 let endbox = document.getElementById("endsection");
+let timerInterval = null;
+let endscreentitle = document.getElementById("endscreentitle");
+let timetext = document.getElementById("timetext");
 
 
 
@@ -13,10 +17,9 @@ let endbox = document.getElementById("endsection");
 
 
 
-
-
-
-
+let gameoverstate = false; 
+let time = 0;
+let timerOn = false;
 let totalFlagged = 0;
 let totalBombs = 0;
 let isFlagModeOn = false;
@@ -33,6 +36,11 @@ let tile = {
 }
 
 function generateBoard() {
+    gameoverstate = false;
+    pauseTimer();
+    timer.textContent = "0";
+    timer.style.display = "flex";
+    endbox.classList.remove("gameover");
     totalFlagged = 0;
     totalBombs = 0;
     minesweepergrid.innerHTML = "";
@@ -51,7 +59,7 @@ function generateBoard() {
             Xarray[x].push(temptile);
         }
     }
-    generateBombs();
+generateBombs();
 }
 
 generateBoard();
@@ -114,35 +122,39 @@ function createVisualBoard() {
             tempButton.dataset.xcord = x;
             tempButton.dataset.ycord = y;
             tempButton.addEventListener("click", function(event){
-                if (isFlagModeOn === false) {
-                    if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isbomb == true) {
-                        tempButton.textContent = "X";
-                        tempButton.id = "bomb";
-                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true; 
-                        endbox.classList.add("gameover");
-                        endResult();
-                    }
-                    else {
-                        tempButton.textContent = Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isnearby;
-                        Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;
-                        let zeroCheckXCoord = event.target.dataset.xcord;
-                        let zeroCheckYCoord = event.target.dataset.ycord;
-                       
-                        tempButton.id = "clicked";
-                        revealif0(zeroCheckXCoord, zeroCheckYCoord);
-                    }
-                } else {
-                    if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked == false) {
-                        if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged == false) {
-                            Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = true;
-                            tempButton.textContent = "F";
-                            tempButton.id = "flagged";
-                            totalFlagged++;
-                        } else {
-                            Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = false;
-                            tempButton.textContent = "";
-                            tempButton.id = "tile";
-                            totalFlagged--;
+                if (gameoverstate === false) {
+                    handleTimer();
+                    if (isFlagModeOn === false) {
+                        if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isbomb == true) {
+                            tempButton.textContent = "X";
+                            tempButton.id = "bomb";
+                            Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true; 
+                            endbox.classList.add("gameover");
+                            
+                            endResult();
+                        }
+                        else {
+                            tempButton.textContent = Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isnearby;
+                            Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked = true;
+                            let zeroCheckXCoord = event.target.dataset.xcord;
+                            let zeroCheckYCoord = event.target.dataset.ycord;
+                        
+                            tempButton.id = "clicked";
+                            revealif0(zeroCheckXCoord, zeroCheckYCoord);
+                        }
+                    } else {
+                        if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isclicked == false) {
+                            if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged == false) {
+                                Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = true;
+                                tempButton.textContent = "F";
+                                tempButton.id = "flagged";
+                                totalFlagged++;
+                            } else {
+                                Xarray[event.target.dataset.xcord][event.target.dataset.ycord].flagged = false;
+                                tempButton.textContent = "";
+                                tempButton.id = "tile";
+                                totalFlagged--;
+                            }
                         }
                     }
                 }
@@ -246,15 +258,13 @@ function handleFlagMode(event) {
     event.preventDefault();
     if (isFlagModeOn === false) {
         isFlagModeOn = true;
-        flagmode.classList.add("flagmodeon");
+flagmode.classList.add("flagmodeon");
     }
     else {
         isFlagModeOn = false;
-        flagmode.classList.remove("flagmodeon");
+flagmode.classList.remove("flagmodeon");
     }
 };
-
-reveal.addEventListener("click", handleReveal);
 
 function handleReveal(event) {
     for (x = 0; x < 14; x++) {
@@ -286,6 +296,10 @@ function endResult() {
             }
         }
     }
+    gameoverstate = true;
+    pauseTimer();
+    endscreentitle.textContent = "Game Over!";
+    timetext.textContent = "Time: " + time + " seconds ";
 }
 
 function handleWin() {
@@ -299,10 +313,35 @@ function handleWin() {
             }
         }
         if (totalCorrectFlags === totalBombs) {
-            console.log("You Win!");
+            gameoverstate = true;
+            endbox.classList.add("gameover");
+            endscreentitle.textContent = "You Win!";
+            pauseTimer();
+            timetext.textContent = "Time: " + time + " seconds ";
         }
     }
 }
 document.addEventListener("click", handleWin);
 
 generate.addEventListener("click", generateBoard);
+
+function handleTimer() {
+    if (timerOn === false) {
+        timerOn = true;
+        timerInterval = setInterval(function() {
+            time++;
+            timer.textContent = time;
+            
+        }, 1000);
+    }
+}
+
+function pauseTimer() {
+    if (timerOn === true) {
+        clearInterval(timerInterval);
+        timerOn = false;
+        timer.style.display = "none";
+    }
+}
+
+test.addEventListener("click", pauseTimer);
