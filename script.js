@@ -1,8 +1,8 @@
 let Xarray = [];
 let minesweepergrid = document.getElementById("minesweepergrid");
 let flagmode = document.getElementById("flagbutton");
-let generate = document.getElementById("restartbutton");
-let endbox = document.getElementById("endsection");
+let reveal = document.getElementById("revealbutton");
+let generate = document.getElementById("generatebutton");
 
 
 
@@ -33,7 +33,7 @@ let tile = {
 }
 
 function generateBoard() {
-    totalFlagged = 0;
+totalFlagged = 0;
     totalBombs = 0;
     minesweepergrid.innerHTML = "";
     console.log("Generating Board");
@@ -51,7 +51,7 @@ function generateBoard() {
             Xarray[x].push(temptile);
         }
     }
-    generateBombs();
+generateBombs();
 }
 
 generateBoard();
@@ -59,47 +59,47 @@ generateBoard();
 // Adds bombs to each array element with a 15% chance of being a bomb 
 
 function generateBombs() {
-    for (x = 0; x < 14; x++) {
-        for (y = 0; y < 14; y++) {
-            if (Math.random() < 0.15) {
-                Xarray[x][y].isbomb = true;
-                let tempTopLeft = [x - 1, y - 1];
-                let tempTop = [x - 1, y];
-                let tempTopRight = [x - 1, y + 1];
-                let tempRight = [x, y + 1];
-                let tempBottomRight = [x + 1, y + 1];
-                let tempBottom = [x + 1, y];
-                let tempBottomLeft = [x + 1, y - 1];
-                let tempLeft = [x, y - 1];
-
-                if (tempTopLeft[0] >= 0 && tempTopLeft[1] >= 0) {
-                    Xarray[tempTopLeft[0]][tempTopLeft[1]].isnearby++;
-                }
-                if (tempTop[0] >= 0) {
-                    Xarray[tempTop[0]][tempTop[1]].isnearby++;
-                }
-                if (tempTopRight[0] >= 0 && tempTopRight[1] < 14) {
-                    Xarray[tempTopRight[0]][tempTopRight[1]].isnearby++;
-                }
-                if (tempRight[1] < 14) {
-                    Xarray[tempRight[0]][tempRight[1]].isnearby++;
-                }
-                if (tempBottomRight[0] < 14 && tempBottomRight[1] < 14) {
-                    Xarray[tempBottomRight[0]][tempBottomRight[1]].isnearby++;
-                }
-                if (tempBottom[0] < 14) {
-                    Xarray[tempBottom[0]][tempBottom[1]].isnearby++;
-                }
-                if (tempBottomLeft[0] < 14 && tempBottomLeft[1] >= 0) {
-                    Xarray[tempBottomLeft[0]][tempBottomLeft[1]].isnearby++;
-                }
-                if (tempLeft[1] >= 0) {
-                    Xarray[tempLeft[0]][tempLeft[1]].isnearby++;
-                }
-                totalBombs++;
+for (x = 0; x < 14; x++) {
+    for (y = 0; y < 14; y++) {
+        if (Math.random() < 0.15) {
+            Xarray[x][y].isbomb = true;
+            let tempTopLeft = [x - 1, y - 1];
+            let tempTop = [x - 1, y];
+            let tempTopRight = [x - 1, y + 1];
+            let tempRight = [x, y + 1];
+            let tempBottomRight = [x + 1, y + 1];
+            let tempBottom = [x + 1, y];
+            let tempBottomLeft = [x + 1, y - 1];
+            let tempLeft = [x, y - 1];
+            
+            if (tempTopLeft[0] >= 0 && tempTopLeft[1] >= 0) {
+                Xarray[tempTopLeft[0]][tempTopLeft[1]].isnearby++;
             }
+            if (tempTop[0] >= 0) {
+                Xarray[tempTop[0]][tempTop[1]].isnearby++;
+            }
+            if (tempTopRight[0] >= 0 && tempTopRight[1] < 14) {
+                Xarray[tempTopRight[0]][tempTopRight[1]].isnearby++;
+            }
+            if (tempRight[1] < 14) {
+                Xarray[tempRight[0]][tempRight[1]].isnearby++;
+            }
+            if (tempBottomRight[0] < 14 && tempBottomRight[1] < 14) {
+                Xarray[tempBottomRight[0]][tempBottomRight[1]].isnearby++;
+            }
+            if (tempBottom[0] < 14) {
+                Xarray[tempBottom[0]][tempBottom[1]].isnearby++;
+            }
+            if (tempBottomLeft[0] < 14 && tempBottomLeft[1] >= 0) {
+                Xarray[tempBottomLeft[0]][tempBottomLeft[1]].isnearby++;
+            }
+            if (tempLeft[1] >= 0) {
+                Xarray[tempLeft[0]][tempLeft[1]].isnearby++;
+            }
+            totalBombs++;
         }
     }
+
     createVisualBoard();
 }
 
@@ -114,6 +114,7 @@ function createVisualBoard() {
             tempButton.dataset.xcord = x;
             tempButton.dataset.ycord = y;
             tempButton.addEventListener("click", function(event){
+                handleTimer();
                 if (isFlagModeOn === false) {
                     if (Xarray[event.target.dataset.xcord][event.target.dataset.ycord].isbomb == true) {
                         tempButton.textContent = "X";
@@ -246,11 +247,11 @@ function handleFlagMode(event) {
     event.preventDefault();
     if (isFlagModeOn === false) {
         isFlagModeOn = true;
-        flagmode.classList.add("flagmodeon");
+flagmode.classList.add("flagmodeon");
     }
     else {
         isFlagModeOn = false;
-        flagmode.classList.remove("flagmodeon");
+flagmode.classList.remove("flagmodeon");
     }
 };
 
@@ -283,6 +284,7 @@ function endResult() {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
                 tempButton.textContent = Xarray[x][y].isnearby;
                 tempButton.id = "clicked";
+                pauseTimer();
             }
         }
     }
@@ -299,10 +301,29 @@ function handleWin() {
             }
         }
         if (totalCorrectFlags === totalBombs) {
-            console.log("You Win!");
+            alert("You Win!");
+            pauseTimer();
         }
     }
 }
 document.addEventListener("click", handleWin);
 
-generate.addEventListener("click", generateBoard);
+function handleTimer() {
+    if (timerOn === false) {
+        timerOn = true;
+        let time = 0;
+        timerInterval = setInterval(function() {
+            time++;
+            timer.textContent = time;
+        }, 1000);
+    }
+}
+
+function pauseTimer() {
+    if (timerOn === true) {
+        clearInterval(timerInterval);
+        timerOn = false;
+    }
+}
+
+test.addEventListener("click", pauseTimer);

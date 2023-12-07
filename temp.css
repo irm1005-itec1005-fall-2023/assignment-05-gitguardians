@@ -22,7 +22,7 @@
     list-style:none;
     text-align:center;
     justify-content:center;
-    gap:0;
+gap:0;
 }
 
 ul.minesweepergrid-class {
@@ -63,9 +63,11 @@ ul.minesweepergrid-class {
     color:white;
 }
 
+
+
 .flagbutton-class {
    content: '';
-   font-size:0px;
+font-size:0px;
    background-image: url(images/flag\(1\).png);
    background-size: cover;
    background-position: center;
