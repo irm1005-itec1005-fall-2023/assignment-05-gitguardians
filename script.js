@@ -288,6 +288,7 @@ function endResult() {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
                 tempButton.textContent = "X";
                 tempButton.id = "bomb";
+                
             }
             else {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
