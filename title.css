@@ -1,22 +1,35 @@
-
+/* 
 *{
     background-image: url(images/minesweepergif.gif);
+
+  
+} */
+
+body {
+    background-image: url(images/minesweepergif.gif);
 }
+
 h1 {
     text-align: center;
     font-size: 5rem;
     font-family: 'Courier New', Courier, monospace;
 }
 button {
+   
     border-radius: 10px;
     color: red;
     
 
     font-size: 3rem;
-    margin-top: 620px;
-    margin-left: 880px;
+    /* margin-top: 620px;  */
+    margin-top: 506px; 
+    margin-left: 580px;
+    position: fixed;
+    /* margin-left: 880px; */
+    
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 button:hover {
   padding: 5px;
   background-color: green;
