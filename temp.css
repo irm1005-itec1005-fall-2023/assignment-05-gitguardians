@@ -99,7 +99,11 @@ ul.minesweepergrid-class {
     padding:1rem;
     border: .5rem solid rgb(156, 156, 156);
     border-radius:1rem;
-    position: fixed;
+   position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000
     
 }
 
@@ -133,9 +137,7 @@ ul.minesweepergrid-class {
     font: bold 1em Arial;
 }
 
-.molegif1 {
-    
-    width: 200px;
-    margin: bottom 300px; ;
+.molebox {
+    width: 20rem;
 
 }
