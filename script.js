@@ -346,4 +346,15 @@ function pauseTimer() {
     }
 }
 
+
+function timerCamera() {
+   let mole = document.getElementById("molegif");
+   
+    if (timetext === timetext + 5) {
+        mole.style.display.block
+        
+    }
+ 
+}
+
 test.addEventListener("click", pauseTimer);
