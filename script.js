@@ -7,7 +7,7 @@ let endbox = document.getElementById("endsection");
 let timerInterval = null;
 let endscreentitle = document.getElementById("endscreentitle");
 let timetext = document.getElementById("timetext");
-
+let testButton = document.getElementById("testWin");
 
 
 
@@ -288,7 +288,7 @@ function endResult() {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
                 tempButton.textContent = "X";
                 tempButton.id = "bomb";
-                
+
             }
             else {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
@@ -301,6 +301,7 @@ function endResult() {
     pauseTimer();
     endscreentitle.textContent = "Game Over!";
     timetext.textContent = "Time: " + time + " seconds ";
+    time=0;
 }
 
 function handleWin() {
@@ -330,7 +331,7 @@ function handleTimer() {
     if (timerOn === false) {
         timerOn = true;
         timerInterval = setInterval(function() {
-            time++;
+                        time++;
             timer.textContent = time;
             
         }, 1000);
