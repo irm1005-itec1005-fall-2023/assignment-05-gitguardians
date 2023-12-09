@@ -348,13 +348,12 @@ function pauseTimer() {
 }
 
 
-
 function testWin() {
     if (!gameoverstate) {
-        // Loop through the game board and flag all non-bomb tiles
+       
         for (let x = 0; x < 14; x++) {
             for (let y = 0; y < 14; y++) {
-                if (!Xarray[x][y].isbomb && !Xarray[x][y].flagged && !Xarray[x][y].isclicked) {
+                if (Xarray[x][y].isbomb && !Xarray[x][y].flagged && !Xarray[x][y].isclicked) {
                     let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
                     tempButton.textContent = "F";
                     tempButton.id = "flagged";
@@ -363,9 +362,8 @@ function testWin() {
                 }
             }
         }
-        // Check if all flagged tiles match the total number of bombs
+       
         if (totalFlagged === totalBombs) {
-            console.log("You win!");    
             gameoverstate = true;
             endbox.classList.add("gameover");
             endscreentitle.textContent = "You Win!";
@@ -375,6 +373,7 @@ function testWin() {
         }
     }
 }
+
 testWinButton.addEventListener("click", function() {
     testWin();
 });
