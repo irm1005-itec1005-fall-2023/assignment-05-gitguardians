@@ -41,6 +41,7 @@ function generateBoard() {
     timer.textContent = "0";
     timer.style.display = "flex";
     endbox.classList.remove("gameover");
+    endbox.classList.remove("winbackground");
     totalFlagged = 0;
     totalBombs = 0;
     minesweepergrid.innerHTML = "";
@@ -315,6 +316,7 @@ function handleWin() {
             }
         }
         if (totalCorrectFlags === totalBombs) {
+            endbox.classList.add("winbackground");
             gameoverstate = true;
             endbox.classList.add("gameover");
             endscreentitle.textContent = "You Win!";
