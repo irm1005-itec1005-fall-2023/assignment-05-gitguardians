@@ -104,7 +104,11 @@ ul.minesweepergrid-class {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000
-    
+}
+
+.winbackground {
+    background-image: url(images/huh.gif);
+    background-color:white;
 }
 
 .endsection-buttons {
