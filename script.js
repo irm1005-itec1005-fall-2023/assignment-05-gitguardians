@@ -318,6 +318,7 @@ function handleWin() {
             gameoverstate = true;
             endbox.classList.add("gameover");
             endscreentitle.textContent = "You Win!";
+            
             pauseTimer();
             timetext.textContent = "Time: " + time + " seconds ";
             time=0;
@@ -388,3 +389,4 @@ function testWin() {
 testWinButton.addEventListener("click", function() {
     testWin();
 });
+

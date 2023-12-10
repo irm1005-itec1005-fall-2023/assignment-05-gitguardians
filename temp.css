@@ -93,7 +93,9 @@ ul.minesweepergrid-class {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url(images/ezgif-1-afaca2068d.gif);
+     background-image: url(images/ezgif-1-afaca2068d.gif); */
+    background-image: url(images/huh.gif);
+    background-color: grey;
     width: 300px;
     height: 150px;
     padding:1rem;
@@ -139,5 +141,4 @@ ul.minesweepergrid-class {
 
 .molebox {
     width: 20rem;
-display: none;
 }
