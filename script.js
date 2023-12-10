@@ -7,7 +7,7 @@ let endbox = document.getElementById("endsection");
 let timerInterval = null;
 let endscreentitle = document.getElementById("endscreentitle");
 let timetext = document.getElementById("timetext");
-
+let testWinButton = document.getElementById("testWin");
 
 
 
@@ -288,7 +288,7 @@ function endResult() {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
                 tempButton.textContent = "X";
                 tempButton.id = "bomb";
-                
+
             }
             else {
                 let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
@@ -301,6 +301,7 @@ function endResult() {
     pauseTimer();
     endscreentitle.textContent = "Game Over!";
     timetext.textContent = "Time: " + time + " seconds ";
+    time=0;
 }
 
 function handleWin() {
@@ -319,6 +320,7 @@ function handleWin() {
             endscreentitle.textContent = "You Win!";
             pauseTimer();
             timetext.textContent = "Time: " + time + " seconds ";
+            time=0;
         }
     }
 }
@@ -330,7 +332,7 @@ function handleTimer() {
     if (timerOn === false) {
         timerOn = true;
         timerInterval = setInterval(function() {
-            time++;
+                        time++;
             timer.textContent = time;
             
         }, 1000);
@@ -345,4 +347,44 @@ function pauseTimer() {
     }
 }
 
-test.addEventListener("click", pauseTimer);
+
+function timerCamera() {
+   let mole = document.getElementById("molegif");
+   
+    if (timetext === timetext + 5) {
+        mole.style.display.block
+        
+    }
+ 
+}
+
+
+function testWin() {
+    if (!gameoverstate) {
+       
+        for (let x = 0; x < 14; x++) {
+            for (let y = 0; y < 14; y++) {
+                if (Xarray[x][y].isbomb && !Xarray[x][y].flagged && !Xarray[x][y].isclicked) {
+                    let tempButton = document.querySelector(`button[data-xcord="${x}"][data-ycord="${y}"]`);
+                    tempButton.textContent = "F";
+                    tempButton.id = "flagged";
+                    Xarray[x][y].flagged = true;
+                    totalFlagged++;
+                }
+            }
+        }
+       
+        if (totalFlagged === totalBombs) {
+            gameoverstate = true;
+            endbox.classList.add("gameover");
+            endscreentitle.textContent = "You Win!";
+            pauseTimer();
+            timetext.textContent = "Time: " + time + " seconds";
+            time = 0;
+        }
+    }
+}
+
+testWinButton.addEventListener("click", function() {
+    testWin();
+});
