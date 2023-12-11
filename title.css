@@ -26,7 +26,7 @@ button {
     /* margin-top: 620px;  */
     margin-top: 506px; 
     margin-left: 580px;
-    position: fixed;
+    position: absolute;
     /* margin-left: 880px; */
     
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
